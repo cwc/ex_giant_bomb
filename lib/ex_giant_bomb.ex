@@ -46,4 +46,14 @@ defmodule ExGiantBomb do
 
     ExGiantBomb.get!("/game/#{id}/", [], opts).body
   end
+
+  @doc "Searches for a given term."
+  @spec search(String.t, String.t, Keyword.t) :: map_result
+  def search("", _), do: raise_api_key_error
+  def search(nil, _), do: raise_api_key_error
+  def search(api_key, query, opts \\ []) do
+    opts = make_request_opts(api_key, Keyword.put(opts, :query, query))
+
+    ExGiantBomb.get!("/search/", [], opts).body
+  end
 end
