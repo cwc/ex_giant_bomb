@@ -1,0 +1,2 @@
+defmodule ExGiantBomb do
+end
